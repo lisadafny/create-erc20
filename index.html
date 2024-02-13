@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Creator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+        integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Roboto:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1" id="navAddress">Conecte-se com o Metamask</span>
+            </div>
+        </nav>
+    </header>
+    <main class="container-fluid justify-content-center d-flex mt-5 pt-5" id="mainDiv">
+
+        <form action="" name="formContract" id="formContract">
+            <div class="bg-dark rounded-5 p-5 mt-5">
+                <h3 class="text-light text-bold my-3">Create Token</h3>
+                <div class="mb-3">
+                    <label for="inputTokenName" class="form-label text-light">Token name</label>
+                    <input type="text" class="form-control" id="inputTokenName" name="inputTokenName"
+                        placeholder="Hyrule coin" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputTokenSymbol" class="form-label text-light">Token symbol</label>
+                    <input type="text" class="form-control" id="inputTokenSymbol" name="inputTokenSymbol"
+                        placeholder="ZELDA" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputDecimals" class="form-label text-light">Decimals</label>
+                    <input type="number" class="form-control" placeholder="2" id="inputDecimals" name="inputDecimals"
+                        aria-describedby="inputDecimals" required>
+                </div>
+                <button type="submit" id="btnSubmit" class="btn btn-outline-light mt-3 w-100">Create</button>
+            </div>
+        </form>
+
+    </main>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.0/ethers.umd.min.js"
+        integrity="sha512-6FpXGGxaPkSpzB4NGxlNurkRNKiMz9wz5c+YPOCJXMGzsk5SgmNY5v70D8AfDfyZi8CVWTKlH26DzP/yXUfmLw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+        integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="erc20.abi.js"></script>
+    <script src="util.js"></script>
+</body>
+
+</html>
