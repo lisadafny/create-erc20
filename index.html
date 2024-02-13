@@ -41,7 +41,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputDecimals" class="form-label text-light">Decimals</label>
-                    <input type="number" class="form-control" placeholder="2" id="inputDecimals" name="inputDecimals"
+                    <input type="number" min="0" max="18" class="form-control" value="2" step="1" id="inputDecimals" name="inputDecimals"
                         aria-describedby="inputDecimals" required>
                 </div>
                 <button type="submit" id="btnSubmit" class="btn btn-outline-light mt-3 w-100">Create</button>
