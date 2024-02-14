@@ -4,6 +4,7 @@ const btnDecimals = $("#inputDecimals");
 let signer = null;
 let provider;
 let factory;
+let contract;
 
 async function start() {
     if (window.ethereum == null) {
@@ -15,16 +16,18 @@ async function start() {
         signer = await provider.getSigner();
         factory = new ethers.ContractFactory(abi, bytecode, signer);
     }
+    $("#formContract").on('submit', deploy);
 }
-$("#btnSubmit").on('submit', async () => {
+async function deploy(event){
+    event.preventDefault();
     const name = btnName.val();
     const symbol = btnSymbol.val();
     const decimals = btnDecimals.val();
 
-    const contract = await factory.deploy(name, symbol, decimals);
+    contract = await factory.deploy(name, symbol, decimals);
 
-    console.log("contract address: ", contract.address)
+    console.log("contract address: ", contract.target)
 
-    await contract.deployTransaction.wait();
-});
+    await contract.waitForDeployment();
+}
 start();
