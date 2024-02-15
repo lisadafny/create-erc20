@@ -10,7 +10,7 @@ async function start() {
     if (window.ethereum == null) {
         console.log("MetaMask not installed");
         provider = ethers.getDefaultProvider();
-
+        $("#sectionCreateContract").addClass("d-none");
     } else {
         provider = new ethers.BrowserProvider(window.ethereum);
         signer = await provider.getSigner();
