@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <header>
         <nav class="navbar bg-light">
             <div class="container-fluid">
@@ -24,33 +23,38 @@
             </div>
         </nav>
     </header>
+
     <main class="container-fluid justify-content-center d-flex mt-5 pt-5" id="mainDiv">
-
-        <form action="" name="formContract" id="formContract">
+        <section id="sectionCreateContract">
+            <form action="" name="formContract" id="formContract">
+                <div class="bg-dark rounded-5 p-5 mt-5">
+                    <h3 class="text-light text-bold my-3">Create Token</h3>
+                    <div class="mb-3">
+                        <label for="inputTokenName" class="form-label text-light">Token name</label>
+                        <input type="text" class="form-control" id="inputTokenName" name="inputTokenName"
+                            placeholder="Hyrule coin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTokenSymbol" class="form-label text-light">Token symbol</label>
+                        <input type="text" class="form-control" id="inputTokenSymbol" name="inputTokenSymbol"
+                            placeholder="ZELDA" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputDecimals" class="form-label text-light">Decimals</label>
+                        <input type="number" min="0" max="18" class="form-control" value="2" step="1" id="inputDecimals"
+                            name="inputDecimals" aria-describedby="inputDecimals" required>
+                    </div>
+                    <button type="submit" id="btnSubmit" class="btn btn-outline-light mt-3 w-100">Create</button>
+                </div>
+            </form>
+        </section>
+        <section id="sectionContractInfo" class="d-none">
             <div class="bg-dark rounded-5 p-5 mt-5">
-                <h3 class="text-light text-bold my-3">Create Token</h3>
-                <div class="mb-3">
-                    <label for="inputTokenName" class="form-label text-light">Token name</label>
-                    <input type="text" class="form-control" id="inputTokenName" name="inputTokenName"
-                        placeholder="Hyrule coin" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputTokenSymbol" class="form-label text-light">Token symbol</label>
-                    <input type="text" class="form-control" id="inputTokenSymbol" name="inputTokenSymbol"
-                        placeholder="ZELDA" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputDecimals" class="form-label text-light">Decimals</label>
-                    <input type="number" min="0" max="18" class="form-control" value="2" step="1" id="inputDecimals" name="inputDecimals"
-                        aria-describedby="inputDecimals" required>
-                </div>
-                <button type="submit" id="btnSubmit" class="btn btn-outline-light mt-3 w-100">Create</button>
+                <h2 class="text-light text-bold my-3">Success!</h2>
+                <h3 class="text-light text-bold my-3">Contract Created Hash: <span id="contractHash"></span></h3>
             </div>
-        </form>
-
+        </section>
     </main>
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

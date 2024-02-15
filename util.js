@@ -18,16 +18,25 @@ async function start() {
     }
     $("#formContract").on('submit', deploy);
 }
-async function deploy(event){
-    event.preventDefault();
-    const name = btnName.val();
-    const symbol = btnSymbol.val();
-    const decimals = btnDecimals.val();
+async function deploy(event) {
+    try {
+        event.preventDefault();
+        const name = btnName.val();
+        const symbol = btnSymbol.val();
+        const decimals = btnDecimals.val();
 
-    contract = await factory.deploy(name, symbol, decimals);
+        contract = await factory.deploy(name, symbol, decimals);
 
-    console.log("contract address: ", contract.target)
+        console.log("contract address: ", contract.target)
 
-    await contract.waitForDeployment();
+        await contract.waitForDeployment();
+
+        $("#sectionCreateContract").addClass("d-none");
+        $("#sectionContractInfo").removeClass("d-none");
+
+        $("#contractHash").html(contract.target);
+    } catch (error) {
+        console.log(error)
+    }
 }
 start();
