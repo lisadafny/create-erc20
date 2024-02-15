@@ -15,6 +15,7 @@ async function start() {
         provider = new ethers.BrowserProvider(window.ethereum);
         signer = await provider.getSigner();
         factory = new ethers.ContractFactory(abi, bytecode, signer);
+        $("#navAddress").html("Welcome " + signer.address);
     }
     $("#formContract").on('submit', deploy);
 }
