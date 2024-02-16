@@ -1,3 +1,5 @@
+const formCreateContract = $("#formContract");
+const formCallContract = $("#formAction");
 let signer = null;
 let provider;
 let factory;
@@ -17,18 +19,21 @@ async function start() {
     factory = new ethers.ContractFactory(abi, bytecode, signer);
     $("#navAddress").html("Welcome " + signer.address);
 
-    $("#formContract").on('submit', deploy);
-    $("#formAction").on('submit', callContract);
+    formCreateContract.on('submit', deploy);
+    formCallContract.on('submit', callContract);
     $(".contract-action").on('click', changeToContractCallingSection);
 
 }
 
 async function deploy(event) {
+    event.preventDefault();
+    const loadingAnimation = $("#loadFormContract");
+    const name = $("#inputTokenName").val();
+    const symbol = $("#inputTokenSymbol").val();
+    const decimals = $("#inputDecimals").val();
     try {
-        event.preventDefault();
-        const name = $("#inputTokenName").val();
-        const symbol = $("#inputTokenSymbol").val();
-        const decimals = $("#inputDecimals").val();
+        formCreateContract.addClass("opacity-25");
+        loadingAnimation.removeClass("d-none");
 
         contract = await factory.deploy(name, symbol, decimals);
 
@@ -36,11 +41,17 @@ async function deploy(event) {
 
         await contract.waitForDeployment();
 
+        loadingAnimation.addClass("d-none");
+
         $("#sectionCreateContract").addClass("d-none");
         $("#sectionContractInfo").removeClass("d-none");
 
         $("#contractHash").html(contract.target);
     } catch (error) {
+        formCreateContract[0].reset();
+        loadingAnimation.addClass("d-none");
+        formCreateContract.removeClass("opacity-25");
+
         $("#modalInfo").modal("show");
         if (error.reason) {
             $(".modal-title").html("Error: " + error.reason);
@@ -60,11 +71,13 @@ function changeToContractCallingSection(event) {
 }
 
 async function callContract(event) {
+    event.preventDefault();
+    const loadingAnimation = $("#loadFormAction");
+    const addressValue = $("#inputAddress").val();
+    const amountValue = $("#inputAmount").val();
     try {
-        event.preventDefault();
-        const addressValue = $("#inputAddress").val();
-        const amountValue = $("#inputAmount").val();
-
+        formCallContract.addClass("opacity-25");
+        loadingAnimation.removeClass("d-none");
         if (!contract || !addressValue || !amountValue) {
             $("#modalInfo").modal("show");
             return;
@@ -76,8 +89,12 @@ async function callContract(event) {
         const tx = await funcContract.send(addressValue, amountValue);
 
         const txReceipt = await tx.wait();
+        loadingAnimation.addClass("d-none");
+        formCallContract.removeClass("opacity-25");
         console.log("txReceipt: ", txReceipt);
     } catch (error) {
+        loadingAnimation.addClass("d-none");
+        formCallContract.removeClass("opacity-25");
         $("#modalInfo").modal("show");
         if (error.reason) {
             $(".modal-title").html("Error: " + error.reason);

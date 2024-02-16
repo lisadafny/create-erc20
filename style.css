@@ -19,9 +19,15 @@ form div.bg-dark {
 .btn-check:checked + label::after{
     content: "";
     position: absolute;
-    bottom: -50%;
-    left: 30%;
+    bottom: -49%;
+    left: 20%;
     border-width: 20px;
     border-style: solid;
     border-color: transparent transparent rgb(248, 249, 250) transparent;
+}
+#sectionContractInfo:has(> #contractCalling > .opacity-25) .btn-check:checked + label::after{
+    opacity: 0.25;
+}
+#loadFormAction{
+    left: 48%;
 }

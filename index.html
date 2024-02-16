@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Roboto:wght@400;500;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loading.css">
 </head>
 
 <body>
@@ -25,47 +26,66 @@
     </header>
 
     <main class="container-fluid justify-content-center d-flex mt-5 pt-5" id="mainDiv">
-        <section id="sectionCreateContract">
+        <section id="sectionCreateContract" class="bg-dark rounded-5 p-5 mt-5 position-relative">
             <form action="" name="formContract" id="formContract">
-                <div class="bg-dark rounded-5 p-5 mt-5">
-                    <h3 class="text-light text-bold my-3">Create Token</h3>
-                    <div class="mb-3">
-                        <label for="inputTokenName" class="form-label text-light">Token name</label>
-                        <input type="text" class="form-control" id="inputTokenName" name="inputTokenName"
-                            placeholder="Hyrule coin" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputTokenSymbol" class="form-label text-light">Token symbol</label>
-                        <input type="text" class="form-control" id="inputTokenSymbol" name="inputTokenSymbol"
-                            placeholder="ZELDA" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputDecimals" class="form-label text-light">Decimals</label>
-                        <input type="number" min="0" max="18" class="form-control" value="2" step="1" id="inputDecimals"
-                            name="inputDecimals" aria-describedby="inputDecimals" required>
-                    </div>
-                    <button type="submit" id="btnSubmit" class="btn btn-outline-light mt-3 w-100">Create</button>
+
+                <h3 class="text-light text-bold my-3">Create Token</h3>
+                <div class="mb-3">
+                    <label for="inputTokenName" class="form-label text-light">Token name</label>
+                    <input type="text" class="form-control" id="inputTokenName" name="inputTokenName"
+                        placeholder="Hyrule coin" required>
                 </div>
+                <div class="mb-3">
+                    <label for="inputTokenSymbol" class="form-label text-light">Token symbol</label>
+                    <input type="text" class="form-control" id="inputTokenSymbol" name="inputTokenSymbol"
+                        placeholder="ZELDA" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputDecimals" class="form-label text-light">Decimals</label>
+                    <input type="number" min="0" max="18" class="form-control" value="2" step="1" id="inputDecimals"
+                        name="inputDecimals" aria-describedby="inputDecimals" required>
+                </div>
+                <button type="submit" id="btnSubmit" class="btn btn-outline-light mt-3 w-100">Create</button>
             </form>
+            <!-- loading animation -->
+            <div id="loadFormContract" class="lds-spinner position-absolute d-none">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <!-- end of loading animation -->
         </section>
         <section id="sectionContractInfo" class="bg-dark rounded-5 p-5 mt-5 d-none">
             <h3 class="text-light text-bold my-3">Contract Created Hash: <span id="contractHash"></span></h3>
-            <header class="d-flex justify-content-center">   
+            <header class="d-flex justify-content-center">
 
                 <input type="radio" name="call" id="mint" class="btn-check" autocomplete="off">
-                <label role="button" for="mint" class="contract-action btn btn-outline-light position-relative m-3">Mint</label>
+                <label role="button" for="mint"
+                    class="contract-action btn btn-outline-light position-relative m-3">Mint</label>
 
                 <input type="radio" name="call" id="burn" class="btn-check" autocomplete="off">
-                <label role="button" for="burn" class="contract-action btn btn-outline-light position-relative m-3">Burn</label>
+                <label role="button" for="burn"
+                    class="contract-action btn btn-outline-light position-relative m-3">Burn</label>
 
                 <input type="radio" name="call" id="tranfer" class="btn-check" autocomplete="off">
-                <label role="button" for="tranfer" class="contract-action btn btn-outline-light position-relative m-3">Tranfer</label>
+                <label role="button" for="tranfer"
+                    class="contract-action btn btn-outline-light position-relative m-3">Tranfer</label>
 
                 <input type="radio" name="call" id="approve" class="btn-check" autocomplete="off">
-                <label role="button" for="approve" class="contract-action btn btn-outline-light position-relative m-3">Approve</label>
+                <label role="button" for="approve"
+                    class="contract-action btn btn-outline-light position-relative m-3">Approve</label>
 
             </header>
-            <article id="contractCalling" class="d-none">
+            <article id="contractCalling" class="d-none position-relative">
                 <form action="" name="formAction" id="formAction">
                     <div class="bg-light rounded-2 p-5">
                         <h2 class="text-bold mb-3">Action</h2>
@@ -83,6 +103,22 @@
                             Transaction</button>
                     </div>
                 </form>
+                <!-- loading animation -->
+            <div id="loadFormAction" class="lds-spinner position-absolute d-none">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <!-- end of loading animation -->
             </article>
         </section>
     </main>
