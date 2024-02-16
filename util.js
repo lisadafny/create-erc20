@@ -5,6 +5,7 @@ let signer = null;
 let provider;
 let factory;
 let contract;
+let symbol;
 
 async function start() {
     if (window.ethereum == null) {
@@ -29,8 +30,8 @@ async function deploy(event) {
     event.preventDefault();
     const loadingAnimation = $("#loadFormContract");
     const name = $("#inputTokenName").val();
-    const symbol = $("#inputTokenSymbol").val();
     const decimals = $("#inputDecimals").val();
+    symbol = $("#inputTokenSymbol").val();
     try {
         formCreateContract.addClass("opacity-25");
         loadingAnimation.removeClass("d-none");
@@ -52,15 +53,7 @@ async function deploy(event) {
         loadingAnimation.addClass("d-none");
         formCreateContract.removeClass("opacity-25");
 
-        $("#modalInfo").modal("show");
-        if (error.reason) {
-            $(".modal-title").html("Error: " + error.reason);
-        }
-        if (error.shortMessage) {
-            $(".modal-body p").html(error.shortMessage);
-            return;
-        }
-        $(".modal-body p").html(error);
+        openModalError(error);
     }
 }
 
@@ -96,21 +89,54 @@ async function callContract(event) {
     } catch (error) {
         loadingAnimation.addClass("d-none");
         formCallContract.removeClass("opacity-25");
-        $("#modalInfo").modal("show");
-        if (error.reason) {
-            $(".modal-title").html("Error: " + error.reason);
-        }
-        if (error.shortMessage) {
-            $(".modal-body p").html(error.shortMessage);
-            return;
-        }
-        $(".modal-body p").html(error);
+
+        openModalError(error);
     }
+
+    updateBalance();
+
 }
 
-function showMessage(string){
+function showMessage(string) {
     $(".toast-body").html(string);
     notification.toast("show");
 }
 
 start();
+
+async function updateBalance(tokenSymbol = symbol) {
+    $("#balanceInfo").addClass("d-none");
+    try {
+        let balance = await contract.balanceOf(signer.address);
+        $("#tokenBalance").html(balance);
+
+        if (!tokenSymbol) {
+            symbol = await contract.symbol();
+            $("#tokenSymbol").html(symbol);
+        }
+        else {
+            symbol = tokenSymbol;
+            $("#tokenSymbol").html(tokenSymbol);
+        }
+
+        //showMessage("balance of token " + symbol + " updated!");
+        $("#balanceInfo").removeClass("d-none");
+
+    } catch (error) {
+        $("#balanceInfo").addClass("d-none");
+
+        openModalError(error);
+    }
+}
+
+function openModalError(error) {
+    $("#modalInfo").modal("show");
+    if (error.reason) {
+        $(".modal-title").html("Error: " + error.reason);
+    }
+    if (error.shortMessage) {
+        $(".modal-body p").html(error.shortMessage);
+        return;
+    }
+    $(".modal-body p").html(error);
+}

@@ -19,8 +19,9 @@
 <body>
     <header>
         <nav class="navbar bg-light">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1" id="navAddress">Please connect with MetaMask</span>
+            <div class="container-fluid d-flex justify-content-between">
+                <div class="navbar-brand my-2" id="navAddress"><h1 class="h1 mb-0">Please connect with MetaMask</h1></div>
+                <div id="balanceInfo" class="text-secondary d-none"><h4>Balance</h4><span id="tokenBalance"></span><span id="tokenSymbol"></span></div>
             </div>
         </nav>
     </header>
