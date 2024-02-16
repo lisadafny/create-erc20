@@ -37,7 +37,15 @@ async function deploy(event) {
 
         $("#contractHash").html(contract.target);
     } catch (error) {
-        console.log(error)
+        $("#modalInfo").modal("show");
+        if(error.reason){
+            $(".modal-title").html("Error: " + error.reason);
+        }
+        if(error.shortMessage){
+            $(".modal-body p").html(error.shortMessage);
+            return;
+        }
+        $(".modal-body p").html(error);
     }
 }
 start();
