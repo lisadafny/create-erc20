@@ -48,11 +48,42 @@
                 </div>
             </form>
         </section>
-        <section id="sectionContractInfo" class="d-none">
-            <div class="bg-dark rounded-5 p-5 mt-5">
-                <h2 class="text-light text-bold my-3">Success!</h2>
-                <h3 class="text-light text-bold my-3">Contract Created Hash: <span id="contractHash"></span></h3>
-            </div>
+        <section id="sectionContractInfo" class="bg-dark rounded-5 p-5 mt-5 d-none">
+            <h3 class="text-light text-bold my-3">Contract Created Hash: <span id="contractHash"></span></h3>
+            <header class="d-flex justify-content-center">   
+
+                <input type="radio" name="call" id="mint" class="btn-check" autocomplete="off">
+                <label role="button" for="mint" class="contract-action btn btn-outline-light position-relative m-3">Mint</label>
+
+                <input type="radio" name="call" id="burn" class="btn-check" autocomplete="off">
+                <label role="button" for="burn" class="contract-action btn btn-outline-light position-relative m-3">Burn</label>
+
+                <input type="radio" name="call" id="tranfer" class="btn-check" autocomplete="off">
+                <label role="button" for="tranfer" class="contract-action btn btn-outline-light position-relative m-3">Tranfer</label>
+
+                <input type="radio" name="call" id="approve" class="btn-check" autocomplete="off">
+                <label role="button" for="approve" class="contract-action btn btn-outline-light position-relative m-3">Approve</label>
+
+            </header>
+            <article id="contractCalling" class="d-none">
+                <form action="" name="formAction" id="formAction">
+                    <div class="bg-light rounded-2 p-5">
+                        <h2 class="text-bold mb-3">Action</h2>
+                        <div class="mb-3">
+                            <label for="inputAddress" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" name="inputAddress"
+                                placeholder="0x..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputAmount" class="form-label">Amount</label>
+                            <input type="number" min="1" step="1" class="form-control" id="inputAmount"
+                                name="inputAmount" value="100" required>
+                        </div>
+                        <button type="submit" id="btnSendTx" class="btn btn-outline-dark mt-3 w-100">Send
+                            Transaction</button>
+                    </div>
+                </form>
+            </article>
         </section>
     </main>
 
@@ -64,7 +95,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-danger">Error description</p>
+                    <p class="text-danger">Something unexpected happened!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
