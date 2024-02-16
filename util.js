@@ -1,10 +1,10 @@
 const formCreateContract = $("#formContract");
 const formCallContract = $("#formAction");
+const notification = $(".toast");
 let signer = null;
 let provider;
 let factory;
 let contract;
-let funcContract;
 
 async function start() {
     if (window.ethereum == null) {
@@ -37,11 +37,11 @@ async function deploy(event) {
 
         contract = await factory.deploy(name, symbol, decimals);
 
-        console.log("contract address: ", contract.target)
-
         await contract.waitForDeployment();
 
         loadingAnimation.addClass("d-none");
+
+        showMessage("Your contract is ready!<br>Contract address: " + contract.target)
 
         $("#sectionCreateContract").addClass("d-none");
         $("#sectionContractInfo").removeClass("d-none");
@@ -84,7 +84,7 @@ async function callContract(event) {
         }
 
         let funcTxt = $(".btn-check:checked")[0].id;
-        funcContract = await contract.getFunction(funcTxt);
+        let funcContract = await contract.getFunction(funcTxt);
 
         const tx = await funcContract.send(addressValue, amountValue);
 
@@ -92,6 +92,7 @@ async function callContract(event) {
         loadingAnimation.addClass("d-none");
         formCallContract.removeClass("opacity-25");
         console.log("txReceipt: ", txReceipt);
+        showMessage(funcTxt + " successful! <br>Tx hash: " + txReceipt.hash)
     } catch (error) {
         loadingAnimation.addClass("d-none");
         formCallContract.removeClass("opacity-25");
@@ -105,6 +106,11 @@ async function callContract(event) {
         }
         $(".modal-body p").html(error);
     }
+}
+
+function showMessage(string){
+    $(".toast-body").html(string);
+    notification.toast("show");
 }
 
 start();
