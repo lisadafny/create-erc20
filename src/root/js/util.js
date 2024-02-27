@@ -15,15 +15,17 @@ async function start() {
     }
 
     provider = new ethers.BrowserProvider(window.ethereum);
-    signer = await provider.getSigner();
     factory = new ethers.ContractFactory(abi, bytecode, signer);
-    $("#navAddress").html("Welcome " + signer.address);
+    
+    getSignerFromMetamask()
 
     formCreateContract.on('submit', deploy);
     formCallContract.on('submit', callContract);
     $(".contract-action").on('click', changeToContractCallingSection);
 
     $("#sectionCreateContract").removeClass("d-none");
+
+    window.ethereum.on('accountsChanged', updateSigner);
 }
 
 async function deploy(event) {
@@ -139,4 +141,20 @@ function openModalError(error) {
         return;
     }
     $(".modal-body p").html(error);
+}
+
+async function getSignerFromMetamask(){
+    signer = await provider.getSigner();
+    $("#navAddress").html("Welcome " + signer.address);
+}
+
+function updateSigner(){
+    
+    if (contract) {
+        showMessage("We noticed you changed your account, some features may become unavailable.<br>" +
+            "Keep in mind that the contract owner is: " + signer.address + "<br>");
+        updateBalance();
+    };
+    getSignerFromMetamask();
+    console.log(accounts);
 }
