@@ -11,7 +11,6 @@ async function start() {
     if (window.ethereum == null) {
         console.log("MetaMask not installed");
         provider = ethers.getDefaultProvider();
-        $("#sectionCreateContract").addClass("d-none");
         return;
     }
 
@@ -24,6 +23,7 @@ async function start() {
     formCallContract.on('submit', callContract);
     $(".contract-action").on('click', changeToContractCallingSection);
 
+    $("#sectionCreateContract").addClass("d-none");
 }
 
 async function deploy(event) {
