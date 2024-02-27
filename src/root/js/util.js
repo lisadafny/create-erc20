@@ -14,10 +14,8 @@ async function start() {
         return;
     }
 
-    provider = new ethers.BrowserProvider(window.ethereum);
-    factory = new ethers.ContractFactory(abi, bytecode, signer);
-    
-    getSignerFromMetamask()
+    setProviderFromMetamask();
+    setSignerFromMetamask();
 
     formCreateContract.on('submit', deploy);
     formCallContract.on('submit', callContract);
@@ -26,6 +24,7 @@ async function start() {
     $("#sectionCreateContract").removeClass("d-none");
 
     window.ethereum.on('accountsChanged', updateSigner);
+    window.ethereum.on("chainChanged", updateProvider);
 }
 
 async function deploy(event) {
@@ -143,9 +142,16 @@ function openModalError(error) {
     $(".modal-body p").html(error);
 }
 
-async function getSignerFromMetamask(){
+async function setSignerFromMetamask(){
+
     signer = await provider.getSigner();
+    factory = new ethers.ContractFactory(abi, bytecode, signer);
+
     $("#navAddress").html("Welcome " + signer.address);
+}
+
+async function setProviderFromMetamask(){
+    provider = new ethers.BrowserProvider(window.ethereum);
 }
 
 function updateSigner(){
@@ -156,5 +162,9 @@ function updateSigner(){
         updateBalance();
     };
     getSignerFromMetamask();
-    console.log(accounts);
+}
+
+function updateProvider(){
+    setProviderFromMetamask();
+    getSignerFromMetamask();
 }
