@@ -23,7 +23,7 @@ async function start() {
     formCallContract.on('submit', callContract);
     $(".contract-action").on('click', changeToContractCallingSection);
 
-    $("#sectionCreateContract").addClass("d-none");
+    $("#sectionCreateContract").removeClass("d-none");
 }
 
 async function deploy(event) {
