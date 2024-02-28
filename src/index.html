@@ -18,19 +18,24 @@
 
 <body>
     <header>
-        <nav class="navbar bg-light">
+        <div class="svgContainer position-absolute">
+            <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
+              <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z"></path>
+            </svg>
+          </div>
+        <nav class="navbar bg-none">
             <div class="container-fluid d-flex justify-content-between">
-                <div class="navbar-brand p-0"><p id="navTitle" class="h3 mb-0">Please connect with MetaMask</p><p id="navSubtitle" class="h5 text-secondary"></p></div>
+                <div class="navbar-brand p-0"><p id="navTitle" class="h3 mb-0 d-none d-md-block">Please connect with MetaMask</p><p id="navSubtitle" class="h5 text-secondary"></p></div>
                 <div id="balanceInfo" class="text-secondary d-none"><h4>Balance</h4><span id="tokenBalance"></span><span id="tokenSymbol"></span></div>
             </div>
         </nav>
     </header>
 
     <main class="container-fluid justify-content-center d-flex mt-3 pt-3" id="mainDiv">
-        <section id="sectionCreateContract" class="bg-dark rounded-5 p-5 mt-5 position-relative d-none">
+        <section id="sectionCreateContract" class="bg-dark rounded-5 px-5 py-4 mt-5 position-relative d-none">
             <form action="" name="formContract" id="formContract">
 
-                <h3 class="text-light text-bold my-3">Create Token</h3>
+                <h3 class="text-light text-bold mb-3">Create Token</h3>
                 <div class="mb-3">
                     <label for="inputTokenName" class="form-label text-light">Token name</label>
                     <input type="text" class="form-control" id="inputTokenName" name="inputTokenName"

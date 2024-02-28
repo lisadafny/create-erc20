@@ -15,10 +15,12 @@ form div.bg-dark {
 .modal-body::first-letter {
     text-transform: uppercase;
 }
+
 .toast-body::first-letter {
     text-transform: uppercase;
 }
-.btn-check:checked + label::after{
+
+.btn-check:checked+label::after {
     content: "";
     position: absolute;
     bottom: -49%;
@@ -27,17 +29,39 @@ form div.bg-dark {
     border-style: solid;
     border-color: transparent transparent rgb(248, 249, 250) transparent;
 }
-#sectionContractInfo:has(> #contractCalling > .opacity-25) .btn-check:checked + label::after{
+
+#sectionContractInfo:has(> #contractCalling > .opacity-25) .btn-check:checked+label::after {
     opacity: 0.25;
 }
-#loadFormAction{
+
+#loadFormAction {
     left: 48%;
 }
-.toast{
+
+.toast {
     position: absolute;
     bottom: 0;
     right: 0;
 }
-.toast img{
+
+.toast img {
     width: 30px;
+}
+
+svg {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+svg path{
+fill: #fff;    
+}
+.svgContainer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: middle;
+    overflow: hidden;
 }
