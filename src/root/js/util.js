@@ -163,7 +163,7 @@ function updateSigner(){
             "Keep in mind that the contract owner is: " + signer.address + "<br>");
         updateBalance();
     };
-    getSignerFromMetamask();
+    setSignerFromMetamask();
 }
 
 function updateProvider(){
