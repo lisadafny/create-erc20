@@ -147,7 +147,9 @@ async function setSignerFromMetamask(){
     signer = await provider.getSigner();
     factory = new ethers.ContractFactory(abi, bytecode, signer);
 
-    $("#navAddress").html("Welcome " + signer.address);
+    $("#navTitle").html("Welcome " + signer.address);
+    let network = await provider.getNetwork();
+    $("#navSubtitle").html("Connected on " + network.name.toUpperCase());
 }
 
 async function setProviderFromMetamask(){
@@ -166,5 +168,5 @@ function updateSigner(){
 
 function updateProvider(){
     setProviderFromMetamask();
-    getSignerFromMetamask();
+    setSignerFromMetamask();
 }
