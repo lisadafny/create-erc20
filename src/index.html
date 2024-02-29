@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Roboto:wght@400;500;700;900&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./root/css/style.css">
     <link rel="stylesheet" href="./root/css/loading.css">
 </head>
@@ -20,13 +22,18 @@
     <header class="mb-xxl-5 pb-xxl-5">
         <div class="svgContainer position-absolute">
             <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
-              <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z"></path>
+                <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z"></path>
             </svg>
-          </div>
+        </div>
         <nav class="navbar bg-none">
             <div class="container-fluid d-flex justify-content-between">
-                <div class="navbar-brand p-0"><p id="navTitle" class="h3 mb-0 d-none d-md-block">Please connect with MetaMask</p><p id="navSubtitle" class="h5 text-secondary"></p></div>
-                <div id="balanceInfo" class="text-secondary d-none"><h4>Balance</h4><span id="tokenBalance"></span><span id="tokenSymbol"></span></div>
+                <div class="navbar-brand p-0">
+                    <p id="navTitle" class="h3 mb-0 d-none d-md-block">Please connect with MetaMask</p>
+                    <p id="navSubtitle" class="h5 text-secondary"></p>
+                </div>
+                <div id="balanceInfo" class="text-secondary d-none">
+                    <h4>Balance</h4><span id="tokenBalance"></span><span id="tokenSymbol"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -110,21 +117,21 @@
                     </div>
                 </form>
                 <!-- loading animation -->
-            <div id="loadFormAction" class="lds-spinner position-absolute d-none">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <!-- end of loading animation -->
+                <div id="loadFormAction" class="lds-spinner position-absolute d-none">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <!-- end of loading animation -->
             </article>
         </section>
     </main>
@@ -148,15 +155,15 @@
 
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
-          <img src="./root/img/toastpicture.jpg" class="rounded img-fluid me-2" alt="...">
-          <strong class="me-auto">Gintoki Bot</strong>
-          <small>now</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            <img src="./root/img/toastpicture.jpg" class="rounded img-fluid me-2" alt="...">
+            <strong class="me-auto">Gintoki Bot</strong>
+            <small>now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-          Hey, your contract is loading...
+            Hey, your contract is loading...
         </div>
-      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -167,6 +174,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
         integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="./root/js/erc20.abi.js"></script>
     <script src="./root/js/erc20.bytecode.js"></script>
     <script src="./root/js/util.js"></script>
