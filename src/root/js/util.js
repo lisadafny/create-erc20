@@ -13,7 +13,11 @@ async function start() {
         provider = ethers.getDefaultProvider();
         return;
     }
-
+    if(!window.ethereum.isMetaMask){
+        console.log("User not using MetaMask");
+        provider = ethers.getDefaultProvider();
+        return;
+    }
     setProviderFromMetamask();
     setSignerFromMetamask();
 
