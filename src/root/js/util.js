@@ -13,11 +13,15 @@ async function start() {
         provider = ethers.getDefaultProvider();
         return;
     }
-    if(!window.ethereum.isMetaMask){
+
+    if (!window.ethereum.isMetaMask) {
         console.log("User not using MetaMask");
         provider = ethers.getDefaultProvider();
         return;
     }
+
+    verifyConnection();
+
     setProviderFromMetamask();
     setSignerFromMetamask();
 
@@ -136,6 +140,9 @@ async function updateBalance(tokenSymbol = symbol) {
 
 function openModalError(error) {
     $("#modalInfo").modal("show");
+    if (!error) {
+        return;
+    }
     if (error.reason) {
         $(".modal-title").html("Error: " + error.reason);
     }
@@ -146,7 +153,7 @@ function openModalError(error) {
     $(".modal-body p").html(error);
 }
 
-async function setSignerFromMetamask(){
+async function setSignerFromMetamask() {
 
     signer = await provider.getSigner();
     factory = new ethers.ContractFactory(abi, bytecode, signer);
@@ -156,12 +163,12 @@ async function setSignerFromMetamask(){
     $("#navSubtitle").html("Connected on " + network.name.toUpperCase());
 }
 
-async function setProviderFromMetamask(){
+async function setProviderFromMetamask() {
     provider = new ethers.BrowserProvider(window.ethereum);
 }
 
-function updateSigner(){
-    
+function updateSigner() {
+
     if (contract) {
         showMessage("We noticed you changed your account, some features may become unavailable.<br>" +
             "Keep in mind that the contract owner is: " + signer.address + "<br>");
@@ -170,7 +177,22 @@ function updateSigner(){
     setSignerFromMetamask();
 }
 
-function updateProvider(){
+function updateProvider() {
     setProviderFromMetamask();
     setSignerFromMetamask();
+}
+
+function verifyConnection() {
+    ethereum.request({
+        method: 'eth_accounts'
+    })
+        .then(accounts => checkConnectedAccount(accounts))
+        .catch(error => openModalError(error));
+}
+
+function checkConnectedAccount(accounts) {
+    console.log(accounts);
+    if (!accounts.length) {
+        openModalError();
+    }
 }
