@@ -193,6 +193,12 @@ function verifyConnection() {
 function checkConnectedAccount(accounts) {
     console.log(accounts);
     if (!accounts.length) {
+        $(".modal-body p").html("please connect with a valid Metamask wallet!");
+        makeCloseBtnReloadPage();
         openModalError();
     }
+}
+
+function makeCloseBtnReloadPage(){
+    $(".btn, .btn-close").on('click', () => {window.location.reload()});
 }
